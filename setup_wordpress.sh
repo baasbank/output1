@@ -3,12 +3,6 @@
 
 export DEBIAN_FRONTEND="noninteractive"
 
-USER=$(whoami)
-MYSQL_ROOT_PASSWORD=$(curl http://metadata.google.internal/computeMetadata/v1/project/attributes/mysql_root_password -H "Metadata-Flavor: Google")
-DATABASE_NAME=$(curl http://metadata.google.internal/computeMetadata/v1/project/attributes/database_name -H "Metadata-Flavor: Google")
-DATABASE_PASSWORD=$(curl http://metadata.google.internal/computeMetadata/v1/project/attributes/database_password -H "Metadata-Flavor: Google")
-
-
 apt-update() {
   echo 'UPDATING PACKAGES'
   sudo apt update -y
@@ -25,6 +19,10 @@ install_apache() {
 
 install_mysql() {
   echo 'INSTALLING MYSQL SERVER'
+  DATABASE_NAME=$(curl http://metadata.google.internal/computeMetadata/v1/project/attributes/database_name -H "Metadata-Flavor: Google")
+  MYSQL_ROOT_PASSWORD=$(curl http://metadata.google.internal/computeMetadata/v1/project/attributes/mysql_root_password -H "Metadata-Flavor: Google")
+  DATABASE_PASSWORD=$(curl http://metadata.google.internal/computeMetadata/v1/project/attributes/database_password -H "Metadata-Flavor: Google")
+  USER=$(whoami)
   sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password ${MYSQL_ROOT_PASSWORD}"
   sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password ${MYSQL_ROOT_PASSWORD}"
   sudo apt-get install mysql-server -y
@@ -74,10 +72,10 @@ create_wordpress_database() {
 setting_up_wordpress() {
   echo 'SETTING UP WORDPRESS'
   sudo mv /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
-  #set database details with perl find and replace
+  # Replace placeholder config file details with real ones
   sudo perl -pi -e "s'database_name_here'"$DATABASE_NAME"'g" /var/www/html/wp-config.php
-        sudo perl -pi -e "s'username_here'"$USER"'g" /var/www/html/wp-config.php
-        sudo perl -pi -e "s'password_here'"$DATABASE_PASSWORD"'g" /var/www/html/wp-config.php
+  sudo perl -pi -e "s'username_here'"$USER"'g" /var/www/html/wp-config.php
+  sudo perl -pi -e "s'password_here'"$DATABASE_PASSWORD"'g" /var/www/html/wp-config.php
   sudo systemctl restart apache2.service 
   sudo systemctl restart mysql.service 
   echo '******************** YOUR WORDPRESS SITE IS DEPLOYED! ********************'
