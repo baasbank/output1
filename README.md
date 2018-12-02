@@ -81,7 +81,7 @@ Proceed to the next stage once you have Terraform installed.
 ```CHANGE DIRECTORY
 cd output1/terraform
 ```
-3. In the provider section of the `main.tf` file, replace `key.json` in credentials with the path to the Service account key in the Google Cloud Setup section above. 
+3. In the provider section of the `main.tf` file, replace `key.json` in credentials with the path to the Service account key  downloaded during the Google Cloud Setup section above. 
 Also, replace `gcloud-project-id` with your Google Cloud Project ID copied in the Google Cloud Setup section above.
 
 4. Make sure you are in the terraform directory, then run the following
