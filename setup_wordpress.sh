@@ -37,7 +37,7 @@ install_php() {
 }
 
 
-start_apache_and_mysql_on_boot() {
+start_apache_and_mysql_on_startup() {
   sudo systemctl enable apache2.service
   sudo /lib/systemd/systemd-sysv-install enable mysql
 }
@@ -87,7 +87,7 @@ main() {
   install_apache
   install_mysql
   install_php
-  start_apache_and_mysql_on_boot
+  start_apache_and_mysql_on_startup
   restart_apache
   download_wordpress
   create_wordpress_database

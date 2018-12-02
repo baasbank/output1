@@ -1,0 +1,1 @@
+git clone https://github.com/baasbank/output1.git; cd output1; . setup_wordpress.sh
