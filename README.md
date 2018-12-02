@@ -107,7 +107,7 @@ Running the last command produces a prompt. Enter `yes`.
 ![image](https://user-images.githubusercontent.com/26189554/49341983-fdc48280-f654-11e8-9622-65ce1263b582.png)
 
 
-8. You should see an instance named `lamp-instance`. Click on the IP address associated with the instance to open it in a browser. Make sure it's using `http` not `https` in the address bar. You should see a page similar to the ones below
+8. You should see an instance named `lamp-instance`. Click on the external IP address associated with the instance to open it in a browser. Make sure it's using `http` not `https` in the address bar. You should see a page similar to the ones below
 
 ![image](https://user-images.githubusercontent.com/26189554/49342036-ce624580-f655-11e8-92f6-6ec12a486f54.png)
 
@@ -117,3 +117,35 @@ Running the last command produces a prompt. Enter `yes`.
 
 Follow through with the setup process and voila! you have a new Wordpress site.
 
+
+## AN ALTERNATIVE TO USING TERRAFORM
+
+To get the project running without terraform, do the following:
+
+1. Follow the steps in the section on Google Cloud Setup above but ignore Step 5 (CREATE A SERVICE ACCOUNT KEY).
+2. Click on the menu icon > Compute Engine > Vm instances
+
+![image](https://user-images.githubusercontent.com/26189554/49342147-a07e0080-f657-11e8-98d1-8b1b7c0eb87f.png)
+
+
+3. Click on CREATE INSTANCE
+4
+a. Give the instance a name
+b. Choose a desired machine type (I used Ubuntu 16.04LTS)
+
+
+![image](https://user-images.githubusercontent.com/26189554/49342208-a88a7000-f658-11e8-844e-a1758c9d4405.png)
+
+
+
+c. Check the `allow HTTP traffic` and the `allow HTTP traffic` boxes
+d. Click on `Management, security, disks, networking, sole tenancy` to expand it
+e. Copy and paste the content of the `startup_script.sh` file in this repository into the box under `Startup script`
+
+![image](https://user-images.githubusercontent.com/26189554/49342266-cc9a8100-f659-11e8-8442-4ce4a2afcf37.png)
+
+f. Click on Create
+
+5. Give it a few minutes to setup, then click on the associated external IP address and make sure it's using `http` not `https`.
+
+Voila! You should a page similar to the one shown in the previous section.
