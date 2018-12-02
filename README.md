@@ -49,7 +49,7 @@ Leave the JSON key type selected then click on the Create button to download the
 ![image](https://user-images.githubusercontent.com/26189554/49341305-ad94f280-f64b-11e8-9e64-a7ef0eeb59b2.png)
 
 #### 6. ADD SOME PROJECT METADATA
-Since the set up is automated, rather than ask for username and password during the setup process, the setup_wordpress.sh script gets that information from the Project Metadata and uses that. 
+Since the set up is automated, rather than ask for username and password during the setup process, the setup_wordpress.sh script gets that information from the Project Metadata and uses that to set up MySQL. 
 Follow the steps below to add metadata:
 
 a. Click on the menu icon > Compute Engine > Metadata
