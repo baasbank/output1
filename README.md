@@ -138,7 +138,7 @@ b. Choose a desired machine type (I used Ubuntu 16.04LTS)
 
 
 
-c. Check the `allow HTTP traffic` and the `allow HTTP traffic` boxes
+c. Check the `allow HTTP traffic` and the `allow HTTPS traffic` boxes
 d. Click on `Management, security, disks, networking, sole tenancy` to expand it
 e. Copy and paste the content of the `startup_script.sh` file in this repository into the box under `Startup script`
 
